@@ -39,7 +39,7 @@ SEXOS = [
     ('M', 'Masculino'),
 ]
 
-FUNCIONES = [
+FUNCIONES_EXONICAS = [
     ('nsn', 'nonsynonymous SNV'),
     ('sn', 'synonymous SNV'),
     ('sg', 'stopgain'),
@@ -66,7 +66,7 @@ class Variante(models.Model):
     ref = models.CharField(max_length=1, choices=BASES_ADN)
     alt = models.CharField(max_length=1, choices=BASES_ADN)
 
-    funcion = models.CharField(max_length=4, choices=FUNCIONES)
+    funcion_exonica = models.CharField(max_length=4, choices=FUNCIONES_EXONICAS)
 
     referencia_cambio = models.TextField()
 
