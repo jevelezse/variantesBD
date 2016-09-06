@@ -1,8 +1,8 @@
 import csv
 from datetime import date
 
-from variants_storage.models import Paciente
-from variants_storage.models import Variante
+from gene_variants.models import Paciente
+from gene_variants.models import Variante
 
 
 def chunked_csv_records(csv_fn):
