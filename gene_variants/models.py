@@ -56,6 +56,9 @@ class Paciente(models.Model):
     fecha_nacimiento = models.DateField()
     sexo = models.CharField(max_length=4, choices=SEXOS)
 
+    def __str__(self):
+        return 'Paciente {} - {}'.format(self.codigo, self.sexo)
+
 
 class Variante(models.Model):
     cromosoma = models.CharField(max_length=7, choices=CROMOSOMAS)
