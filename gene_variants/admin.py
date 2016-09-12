@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Variante
+from .models import Paciente
 
 class VarianteAdmin(admin.ModelAdmin):
     list_display = [
@@ -10,11 +11,16 @@ class VarianteAdmin(admin.ModelAdmin):
         'pos_fin',
         'ref',
         'alt',
-        'funcion_exonica',
-        'referencia_cambio',
+        'tipo_variante',
+        'funcion_gen_ref',
+        'referencia_cambioAA',
         'homocigoto',
         'paciente',
+
     ]
 
+class PacienteAdmin(admin.ModelAdmin):
+    pass
 
+admin.site.register(Paciente, PacienteAdmin)
 admin.site.register(Variante, VarianteAdmin)

@@ -27,24 +27,9 @@ CROMOSOMAS = [
     ('chrY', 'chrY'),
 ]
 
-BASES_ADN = [
-    ('A', 'A'),
-    ('G', 'G'),
-    ('T', 'T'),
-    ('C', 'C'),
-]
-
 SEXOS = [
     ('F', 'Femenino'),
     ('M', 'Masculino'),
-]
-
-FUNCIONES_EXONICAS = [
-    ('nsn', 'nonsynonymous SNV'),
-    ('sn', 'synonymous SNV'),
-    ('sg', 'stopgain'),
-    ('sl', 'stoploss'),
-    ('ukw', 'unknown'),
 ]
 
 
@@ -66,12 +51,13 @@ class Variante(models.Model):
 
     pos_inicio = models.IntegerField()
     pos_fin = models.IntegerField()
-    ref = models.CharField(max_length=1, choices=BASES_ADN)
-    alt = models.CharField(max_length=1, choices=BASES_ADN)
+    ref = models.CharField(max_length=100)
+    alt = models.CharField(max_length=100)
+    tipo_variante = models.CharField(max_length=50)
 
-    funcion_exonica = models.CharField(max_length=4, choices=FUNCIONES_EXONICAS)
+    funcion_gen_ref = models.CharField(max_length=50)
 
-    referencia_cambio = models.TextField()
+    referencia_cambioAA = models.TextField()
 
     homocigoto = models.BooleanField()
 

@@ -42,11 +42,11 @@ CSV_COL_NAMES = [
     ('pos_fin', int),
     ('ref', id_),
     ('alt', id_),
-    ('funcion', id_),
+    ('funcion_gen_ref', id_),
     ('gen', id_),
     ('detalle_gen', id_),
-    ('funcion_exonica', id_),
-    ('referencia_cambio', id_),
+    ('tipo_variante', id_),
+    ('referencia_cambioAA', id_),
 ] + [  # COLUMNAS NO USADAS POR AHORA
     ('1000G_ALL', id_),
     ('1000G_AFR', id_),
@@ -136,8 +136,10 @@ def variante_from_csvrow(row, paciente):
 
     # LISTA DE LAS COLUMNAS QUE QUEREMOS TOMAR DEL CSV
     for col_name in [
-        'cromosoma', 'pos_inicio', 'pos_fin', 'ref', 'alt', 'gen', 'funcion_exonica',
-        'referencia_cambio', 'homocigoto'
+        'cromosoma', 'pos_inicio', 'pos_fin',
+        'ref', 'alt', 'gen', 'tipo_variante',
+        'referencia_cambioAA', 'homocigoto',
+        'funcion_gen_ref',
     ]:
         pos, parser = CSV_COL[col_name]
         setattr(v, col_name, parser(row[pos]))
