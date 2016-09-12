@@ -159,8 +159,9 @@ def cargar_variantes(paciente, csv_fn):
 def run():
     paciente = Paciente(
         codigo='256523',
-        fecha_nacimiento=date(1984, 4, 1),
+        edad=25,
         sexo='M',
+        historia_clinica='Paciente sano, nada que decir al respecto'
     )
     paciente.save()
     cargar_variantes(paciente, '../anotacion.csv')

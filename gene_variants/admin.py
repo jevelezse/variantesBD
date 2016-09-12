@@ -16,11 +16,18 @@ class VarianteAdmin(admin.ModelAdmin):
         'referencia_cambioAA',
         'homocigoto',
         'paciente',
-
     ]
 
+
 class PacienteAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'padre',
+        'madre',
+        'codigo',
+        'edad',
+        'sexo',
+        'historia_clinica',
+    ]
 
 admin.site.register(Paciente, PacienteAdmin)
 admin.site.register(Variante, VarianteAdmin)

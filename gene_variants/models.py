@@ -38,8 +38,9 @@ class Paciente(models.Model):
     madre = models.ForeignKey('self', null=True, related_name='hijos_como_madre')
 
     codigo = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField()
+    edad = models.IntegerField()
     sexo = models.CharField(max_length=4, choices=SEXOS)
+    historia_clinica = models.TextField(blank=True)
 
     def __str__(self):
         return 'Paciente {} - {}'.format(self.codigo, self.sexo)
