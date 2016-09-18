@@ -34,8 +34,8 @@ SEXOS = [
 
 
 class Paciente(models.Model):
-    padre = models.ForeignKey('self', null=True, related_name='hijos_como_padre')
-    madre = models.ForeignKey('self', null=True, related_name='hijos_como_madre')
+    padre = models.ForeignKey('self', blank=True, null=True, related_name='hijos_como_padre')
+    madre = models.ForeignKey('self', blank=True, null=True, related_name='hijos_como_madre')
 
     codigo = models.CharField(max_length=100)
     edad = models.IntegerField()
