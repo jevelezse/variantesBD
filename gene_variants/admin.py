@@ -5,6 +5,7 @@ from .models import Paciente
 
 class VarianteAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'cromosoma',
         'gen',
         'pos_inicio',
@@ -21,6 +22,7 @@ class VarianteAdmin(admin.ModelAdmin):
 
 class PacienteAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'padre',
         'madre',
         'codigo',
