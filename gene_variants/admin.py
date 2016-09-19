@@ -5,7 +5,7 @@ from .models import Paciente
 
 class VarianteAdmin(admin.ModelAdmin):
     list_display = [
-        'id',
+        'paciente',
         'cromosoma',
         'gen',
         'pos_inicio',
@@ -14,10 +14,12 @@ class VarianteAdmin(admin.ModelAdmin):
         'alt',
         'tipo_variante',
         'funcion_gen_ref',
-        'referencia_cambioAA',
         'homocigoto',
-        'paciente',
+        'referencia_cambioAA',
     ]
+
+    list_filter = ['paciente']
+    search_fields = ['gen']
 
 
 class PacienteAdmin(admin.ModelAdmin):
