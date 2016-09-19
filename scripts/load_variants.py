@@ -8,7 +8,7 @@ from gene_variants.models import Variante
 def chunked_csv_records(csv_fn):
     csv_data = csv.reader(
         open(csv_fn),
-        delimiter='|',
+        delimiter=',',
         strict=True,
     )
 
