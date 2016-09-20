@@ -18,8 +18,7 @@ class VarianteAdmin(admin.ModelAdmin):
         'referencia_cambioAA',
     ]
 
-    list_filter = ['paciente']
-    search_fields = ['gen']
+    list_filter = ['paciente', 'homocigoto', 'gen']
 
 
 class PacienteAdmin(admin.ModelAdmin):
