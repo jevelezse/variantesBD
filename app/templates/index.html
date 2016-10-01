@@ -1,0 +1,10 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
