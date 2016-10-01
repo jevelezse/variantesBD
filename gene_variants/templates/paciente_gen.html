@@ -1,0 +1,12 @@
+{% load render_table from django_tables2 %}
+
+<form action="{% url 'paciente_gen' %}" method="GET">
+    {{ search_form }}
+    <input type="submit" value="Buscar" />
+</form>
+
+<div>
+    {% if variantes %}
+        {% render_table variantes %}
+    {% endif %}
+</div>
