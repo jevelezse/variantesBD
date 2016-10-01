@@ -156,12 +156,23 @@ def cargar_variantes(paciente, csv_fn):
         Variante.objects.bulk_create(variantes)
 
 
-def run():
+def run(csv_variantes, codigo_paciente, edad_paciente, sexo_paciente):
+    try:
+        int(edad_paciente)
+    except ValueError:
+        raise Exception(
+            'La edad del paciente debe ser un número. Esto no sirve: {}'.format(edad_paciente),
+        )
+    if sexo_paciente not in ('M', 'F'):
+        raise Exception(
+            'El sexo del paciente debe ser M o F. Esto no sirve: {}'.format(sexo_paciente)
+        )
+
     paciente = Paciente(
-        codigo='256523',
-        edad=25,
-        sexo='M',
-        historia_clinica='Paciente sano, nada que decir al respecto'
+        codigo=codigo_paciente,
+        edad=int(edad_paciente),
+        sexo=sexo_paciente,
+        historia_clinica='Pendiente por cargar'
     )
     paciente.save()
-    cargar_variantes(paciente, '../anotacion.csv')
+    cargar_variantes(paciente, csv_variantes)
