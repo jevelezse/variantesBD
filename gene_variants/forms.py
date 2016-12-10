@@ -14,10 +14,14 @@ class PacienteGenForm(forms.Form):
     )
     gen = forms.ChoiceField(
         label='Gen',
-        choices=[(None, '-----')] + [
+        choices=[],
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["gen"].choices = [(None, '-----')] + [
             (gen, gen)
             for gen in Variante.objects.values_list(
                 'gen', flat=True,
             ).distinct().order_by('gen')
-        ],
-    )
+        ]
