@@ -15,10 +15,11 @@ class VarianteAdmin(admin.ModelAdmin):
         'tipo_variante',
         'funcion_gen_ref',
         'homocigoto_str',
+        'clinvar_sig',
         'referencia_cambioAA',
     ]
 
-    list_filter = ['paciente', 'homocigoto', 'gen']
+    list_filter = ['paciente', 'homocigoto', 'gen', 'clinvar_sig']
 
 
 
