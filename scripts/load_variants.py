@@ -35,6 +35,19 @@ def parse_homocigoto(s):
     return s.lower() == 'hom'
 
 
+def parse_clinvar_sig(s):
+    s = s.strip()
+    if s == ".":
+        return ""
+    unique_cvsigs = set(s.split("|"))
+
+    if 'other' in unique_cvsigs and len(unique_cvsigs) > 1:
+        unique_cvsigs.discard('other')
+
+    return "|".join(sorted(unique_cvsigs))
+
+
+
 # LISTA DE TODAS LAS COLUMNAS EN EL CSV
 CSV_COL_NAMES = [
     ('cromosoma', id_),
@@ -70,7 +83,7 @@ CSV_COL_NAMES = [
     ('dbSNP', id_),
     ('COSMIC_ID', id_),
     ('COSMIC_DIS', id_),
-    ('ClinVar_SIG', id_),
+    ('clinvar_sig', parse_clinvar_sig),
     ('ClinVar_DIS', id_),
     ('ClinVar_STATUS', id_),
     ('ClinVar_ID', id_),
@@ -139,7 +152,7 @@ def variante_from_csvrow(row, paciente):
         'cromosoma', 'pos_inicio', 'pos_fin',
         'ref', 'alt', 'gen', 'tipo_variante',
         'referencia_cambioAA', 'homocigoto',
-        'funcion_gen_ref',
+        'funcion_gen_ref', 'clinvar_sig',
     ]:
         pos, parser = CSV_COL[col_name]
         setattr(v, col_name, parser(row[pos]))

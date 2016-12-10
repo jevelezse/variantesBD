@@ -54,6 +54,7 @@ class Variante(models.Model):
     pos_fin = models.IntegerField()
     ref = models.CharField(max_length=100)
     alt = models.CharField(max_length=100)
+    clinvar_sig = models.CharField(max_length=100)
     tipo_variante = models.CharField(max_length=50)
 
     funcion_gen_ref = models.CharField(max_length=50)
