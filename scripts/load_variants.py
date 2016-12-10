@@ -1,6 +1,7 @@
 import csv
 from collections import namedtuple
 from datetime import date
+from os import path
 
 from gene_variants.models import Paciente
 from gene_variants.models import Variante
@@ -187,23 +188,28 @@ def cargar_variantes(paciente, csv_fn):
         Variante.objects.bulk_create(variantes)
 
 
-def run(csv_variantes, codigo_paciente, edad_paciente, sexo_paciente):
-    try:
-        int(edad_paciente)
-    except ValueError:
-        raise Exception(
-            'La edad del paciente debe ser un número. Esto no sirve: {}'.format(edad_paciente),
-        )
-    if sexo_paciente not in ('M', 'F'):
-        raise Exception(
-            'El sexo del paciente debe ser M o F. Esto no sirve: {}'.format(sexo_paciente)
-        )
+def cargar_datos_paciente(archivo_datos_paciente):
+    codigo = path.basename(archivo_datos_paciente)
+    with open(archivo_datos_paciente) as datos_paciente:
+        linea_edad = datos_paciente.readline().strip()
+        edad = int(linea_edad.split()[-1])
+
+        linea_sexo = datos_paciente.readline().strip()
+        sexo = linea_sexo.split()[-1]
+
+        historia_clinica = datos_paciente.read()
+
+    return (codigo, edad, sexo, historia_clinica)
+
+
+def run(csv_variantes, archivo_datos_paciente):
+    codigo, edad, sexo, historia_clinica = cargar_datos_paciente(archivo_datos_paciente)
 
     paciente = Paciente(
-        codigo=codigo_paciente,
-        edad=int(edad_paciente),
-        sexo=sexo_paciente,
-        historia_clinica='Pendiente por cargar'
+        codigo=codigo,
+        edad=edad,
+        sexo=sexo,
+        historia_clinica=historia_clinica,
     )
     paciente.save()
     cargar_variantes(paciente, csv_variantes)
