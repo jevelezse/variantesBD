@@ -66,6 +66,6 @@ class Variante(models.Model):
 
     def homocigoto_str(self):
         if self.homocigoto:
-            return 'homocigoto'
-        return 'heterocigoto'
+            return 'hom'
+        return 'het'
 
