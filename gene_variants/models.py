@@ -64,3 +64,8 @@ class Variante(models.Model):
 
     paciente = models.ForeignKey('Paciente')
 
+    def homocigoto_str(self):
+        if self.homocigoto:
+            return 'homocigoto'
+        return 'heterocigoto'
+

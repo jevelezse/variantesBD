@@ -14,11 +14,12 @@ class VarianteAdmin(admin.ModelAdmin):
         'alt',
         'tipo_variante',
         'funcion_gen_ref',
-        'homocigoto',
+        'homocigoto_str',
         'referencia_cambioAA',
     ]
 
     list_filter = ['paciente', 'homocigoto', 'gen']
+
 
 
 class PacienteAdmin(admin.ModelAdmin):
