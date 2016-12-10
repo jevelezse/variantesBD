@@ -60,7 +60,6 @@ CSV_COL_NAMES = [
     ('detalle_gen', id_),
     ('tipo_variante', id_),
     ('referencia_cambioAA', id_),
-] + [  # COLUMNAS NO USADAS POR AHORA
     ('1000G_ALL', id_),
     ('1000G_AFR', id_),
     ('1000G_AMR', id_),
@@ -120,7 +119,6 @@ CSV_COL_NAMES = [
     ('phyloP46way_placental', id_),
     ('phyloP100way_vertebrate', id_),
     ('SiPhy_29way_logOdds', id_),
-] + [
     ('homocigoto', parse_homocigoto),
 ]
 # other unused columns
