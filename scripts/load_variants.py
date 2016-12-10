@@ -1,4 +1,5 @@
 import csv
+from collections import namedtuple
 from datetime import date
 
 from gene_variants.models import Paciente
@@ -47,6 +48,25 @@ def parse_clinvar_sig(s):
     return "|".join(sorted(unique_cvsigs))
 
 
+RefCambio = namedtuple('RefCambio', [
+    'gen', 'num_acceso', 'exon', 'camb_nucl', 'camb_AA',
+])
+def parse_referencia_cambio(s):
+    refs_s = s.split(",")
+    try:
+        refs = [RefCambio(*(ref_s.split(":"))) for ref_s in refs_s]
+    except TypeError:
+        return s
+    unique_refs = dict()
+    for ref in refs:
+        unique_refs[(ref.gen, ref.exon, ref.camb_nucl, ref.camb_AA)] = ref
+
+    refs_s = [
+        "{0.gen}:{0.exon}:{0.camb_nucl}:{0.camb_AA}".format(unique_refs[k])
+        for k in sorted(unique_refs)
+    ]
+    return "\n".join(refs_s)
+
 
 # LISTA DE TODAS LAS COLUMNAS EN EL CSV
 CSV_COL_NAMES = [
@@ -59,7 +79,7 @@ CSV_COL_NAMES = [
     ('gen', id_),
     ('detalle_gen', id_),
     ('tipo_variante', id_),
-    ('referencia_cambioAA', id_),
+    ('referencia_cambioAA', parse_referencia_cambio),
     ('1000G_ALL', id_),
     ('1000G_AFR', id_),
     ('1000G_AMR', id_),
