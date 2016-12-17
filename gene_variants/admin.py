@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 from .models import Variante
 from .models import Paciente
 
-class VarianteAdmin(admin.ModelAdmin):
+class VarianteAdmin(admin.ModelAdmin): #filtros 
     list_display = [
         'paciente',
         'cromosoma',
