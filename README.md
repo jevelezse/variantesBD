@@ -6,6 +6,8 @@ El primer argumento es el archivo CSV con las variantes (en este ejemplo
 `../variantes.csv`), y luego van el código del paciente (`FHB234`), la edad del
 paciente (debe ser un número), y el sexo (debe ser `M` o `F`).
 
-# Activar ambiente virtual python BD
 
+Activar ambiente virtual python BD
 source ~/.venvs/variantesdb/bin/activate
+Run server
+python manage.py runserver
