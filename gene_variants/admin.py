@@ -20,7 +20,7 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
         'html_referencia_cambioAA',
     ]
 
-    list_filter = ['paciente', 'homocigoto', 'gen', 'clinvar_sig']
+    list_filter = ['paciente', 'homocigoto', 'clinvar_sig']
 
     def html_referencia_cambioAA(self, obj):
         return mark_safe(obj.referencia_cambioAA.replace("\n", "<br/>"))
