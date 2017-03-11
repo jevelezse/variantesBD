@@ -48,7 +48,7 @@ class Paciente(models.Model):
 
 class Variante(models.Model):
     cromosoma = models.CharField(max_length=7, choices=CROMOSOMAS)
-    gen = models.CharField(max_length=40)
+    gen = models.CharField(max_length=40, db_index=True)
 
     pos_inicio = models.IntegerField()
     pos_fin = models.IntegerField()
