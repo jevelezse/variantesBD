@@ -20,13 +20,25 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
         'html_referencia_cambioAA',
     ]
 
+    search_fields = ['^gen']
+
+    def get_search_results(self, request, queryset, search_term):
+        all_entries = self.model.objects.all() 
+        search_term = search_term.strip()
+        if len(search_term) >= 1:
+            all_entries = all_entries.filter(gen__startswith=search_term)
+
+        for k,v in request.GET.items():
+            filterargs = {k:v}
+            if k.startswith('homocigoto') or k.startswith('paciente') or k.startswith('clinvar_sig'):
+                all_entries = all_entries.filter(**filterargs) 
+        return (all_entries, False)
+
     list_filter = ['paciente', 'homocigoto', 'clinvar_sig']
 
     def html_referencia_cambioAA(self, obj):
         return mark_safe(obj.referencia_cambioAA.replace("\n", "<br/>"))
     html_referencia_cambioAA.short_description = "ref. cambio"
-
-
 
 
 class PacienteAdmin(admin.ModelAdmin):
