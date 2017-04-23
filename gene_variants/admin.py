@@ -22,6 +22,7 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
 
     search_fields = ['^gen']
 
+
     def get_search_results(self, request, queryset, search_term):
         all_entries = self.model.objects.all() 
         search_term = search_term.strip()
@@ -34,7 +35,7 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
                 all_entries = all_entries.filter(**filterargs) 
         return (all_entries, False)
 
-    list_filter = ['paciente', 'homocigoto', 'clinvar_sig']
+    list_filter = ['homocigoto', 'clinvar_sig']
 
     def html_referencia_cambioAA(self, obj):
         return mark_safe(obj.referencia_cambioAA.replace("\n", "<br/>"))
@@ -51,6 +52,8 @@ class PacienteAdmin(admin.ModelAdmin):
         'sexo',
         'historia_clinica',
     ]
+
+    search_fields = ['historia_clinica']
 
 admin.site.register(Paciente, PacienteAdmin)
 admin.site.register(Variante, VarianteAdmin)

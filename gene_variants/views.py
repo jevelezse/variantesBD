@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms import PacienteGenForm
 from .models import Variante
 
+
 def paciente_gen(request):
     search_form = PacienteGenForm(request.GET)
 
@@ -18,3 +19,4 @@ def paciente_gen(request):
             gen=search_form.cleaned_data['gen'],
         ),
     ))
+
