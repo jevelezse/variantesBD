@@ -18,7 +18,7 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
         'homocigoto_str',
         'clinvar_sig',
         'html_referencia_cambioAA',
-    ]
+        ] 
 
     search_fields = ['^gen']
 
@@ -31,11 +31,15 @@ class VarianteAdmin(admin.ModelAdmin): #filtros
 
         for k,v in request.GET.items():
             filterargs = {k:v}
-            if k.startswith('homocigoto') or k.startswith('paciente') or k.startswith('clinvar_sig'):
+            if k.startswith('homocigoto') or k.startswith('paciente') or k.startswith('clinvar_sig') or k.startswith('tipo_variante') :
                 all_entries = all_entries.filter(**filterargs) 
         return (all_entries, False)
 
-    list_filter = ['homocigoto', 'clinvar_sig']
+    list_filter = ['paciente','tipo_variante','homocigoto', 'clinvar_sig']
+    search_fields = ['paciente']
+
+    
+
 
     def html_referencia_cambioAA(self, obj):
         return mark_safe(obj.referencia_cambioAA.replace("\n", "<br/>"))
