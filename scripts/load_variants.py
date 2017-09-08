@@ -34,7 +34,7 @@ def id_(s):
 
 
 def parse_homocigoto(s):
-	return s.lower() == 'hom'
+	return (s.lower() == 'hom')
 
 
 def parse_clinvar_sig(s):
